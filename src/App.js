@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import NavMenu from './Components/NavMenu';
+import Form from './Components/form'
+import FormList from './Components/nameList'
 
 class App extends Component {
+
+  state = {
+    names: [ ]
+  }
+
+  getName = name => {
+    this.setState({
+      names: [ ...this.state.names, name]
+    }) 
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <NavMenu />
+        <Form appName={ this.getName } />
+        <div className="container">
+          <div className="col s12 l6 center">
+            <FormList propNames={ this.state.names } />
+          </div>
+        </div>
       </div>
     );
   }
